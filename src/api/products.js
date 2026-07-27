@@ -38,7 +38,7 @@ function mapProduct(product) {
   const productImageUrl =
     product.image ??
     (product.id != null
-      ? `${API_BASE_URL}/products/image/${product.id}`
+      ? `${API_BASE_URL}/api/products/image/${product.id}`
       : null);
 
   return {
@@ -112,7 +112,7 @@ export async function fetchProducts(params = {}) {
   }
 
   const query = new URLSearchParams(params).toString();
-  const path = query ? `/products?${query}` : "/products";
+  const path = query ? `/api/products?${query}` : "/api/products";
   try {
     const payload = await apiFetch(path);
     return {
@@ -163,7 +163,7 @@ export async function searchProducts(keyword) {
 // GET /products/:id
 export async function fetchProduct(id) {
   try {
-    const payload = await apiFetch(`/products/${id}`);
+    const payload = await apiFetch(`/api/products/${id}`);
     return { item: mapProduct(normalizeItem(payload)), usingMockData: false };
   } catch (err) {
     if (FALL_BACK_TO_MOCKS_ON_FAILURE) {

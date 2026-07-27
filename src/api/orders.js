@@ -87,7 +87,7 @@ export function buildOrderPayload({
 }
 
 export async function placeOrder(orderRequest) {
-  const payload = await apiFetch("/orders/place", {
+  const payload = await apiFetch("/api/orders/place", {
     method: "POST",
     body: JSON.stringify(orderRequest),
   });
@@ -96,6 +96,6 @@ export async function placeOrder(orderRequest) {
 }
 
 export async function fetchOrders() {
-  const payload = await apiFetch("/orders");
+  const payload = await apiFetch("/api/orders");
   return normalizeList(payload).map(mapOrder);
 }
